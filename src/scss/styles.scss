@@ -1,0 +1,14 @@
+@import 'global/reset';
+@import 'global/variables';
+@import 'global/mixins';
+
+@import 'carouselContainer';
+@import 'carouselSlide';
+
+* {
+  font-family: Montserrat;
+}
+
+main {
+  height: 100vh;
+}

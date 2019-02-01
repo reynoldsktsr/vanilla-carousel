@@ -1,0 +1,57 @@
+.carousel {
+  position: relative;
+  height: 100%;
+  .carousel-navigator {
+    &.carousel-arrow {
+      position: absolute;
+      top: 50%;
+      height: 0;
+      font-size: 4em;
+      cursor: pointer;
+      z-index: 1;
+      color: $color-white;
+      transition: all 0.3s;
+      @include target {
+        transform: scale(1.07);
+      }
+      &.carousel-prev {
+        left: 1em;
+      }
+      &.carousel-next {
+        right: 1em;
+      }
+    }
+    &.carousel-dots {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 1em 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(100,0,0,0) 75%);
+      .carousel-dot {
+        background: transparentize($color-grey, 0.5);
+        width: 0.5em;
+        height: 0.5em;
+        border-radius: 50%;
+        cursor: pointer;
+        margin: 0.5em;
+        box-shadow: 1px 1px 10px black;
+        &.active {
+          background-color: $color-white;
+        }
+        @include target {
+          transform: scale(1.4);
+          // background-color: $color-white;
+        }
+      }
+    }
+  }
+  .carousel-slides {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    .carousel-slide {
+    }
+  }
+}
