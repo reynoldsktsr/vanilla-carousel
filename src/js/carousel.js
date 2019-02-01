@@ -5,6 +5,7 @@
       interval = document.querySelectorAll('.carousel')[0].dataset.interval,
       controls, arrowPrev, arrowNext, dots,
       scrollInt,
+      startSlide = 0,
       slideIndex = 0,
       autoClick = new Event('autoClick');
 
@@ -51,14 +52,25 @@
     autoScroll() {
       arrowNext.dispatchEvent(autoClick);
     },
-    setSlidePosition(slide,index) {
-      slide.style.left = `${(index*100)-(slideIndex*100)}%`;
-      dots.children[index].classList.toggle('active', dots.children[index].dataset.target == slideIndex);
+    setSlidePosition(index,position) {
+      slides[index].style.left = `${(position*100)}%`;
     },
     setSlidePositions() {
       for (const [index, slide] of slides.entries()) {
-        slider.setSlidePosition(slide, index);
+        slide.classList.toggle('active', index == slideIndex);
+        slide.classList.toggle('prev', index == slider.findPrev());
+        slide.classList.toggle('next', index == slider.findNext());
       }
+      for (const dot of dots.children) {
+        dot.classList.toggle('active', dot.dataset.target == slideIndex);
+      }
+    },
+    findPrev() {
+      if (slideIndex == 0) { return slides.length - 1 };
+      return slideIndex - 1;
+    },
+    findNext() {
+      return (slideIndex + 1) % slides.length;
     },
     slideNext(e) {
       if (++slideIndex >= slides.length) slideIndex = 0;
@@ -79,7 +91,7 @@
     dotNavigate(e) {
       clearInterval(scrollInt);
       scrollInt = setInterval(slider.autoScroll, interval);
-      slideIndex = e.target.dataset.target;
+      slideIndex = parseInt(e.target.dataset.target);
       slider.setSlidePositions();
     }
   };

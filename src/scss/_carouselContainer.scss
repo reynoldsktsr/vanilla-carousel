@@ -1,6 +1,7 @@
 .carousel {
   position: relative;
   height: 100%;
+  background-color: $color-black;
   .carousel-navigator {
     &.carousel-arrow {
       position: absolute;
@@ -29,6 +30,7 @@
       justify-content: center;
       padding: 1em 0;
       background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(100,0,0,0) 75%);
+      z-index: 2;
       .carousel-dot {
         background: transparentize($color-grey, 0.5);
         width: 0.5em;
